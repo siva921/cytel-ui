@@ -1,18 +1,18 @@
-import React, {useState, useRef} from 'react';
-import { Navbar, Overlay, Popover } from 'react-bootstrap';
+import React, { useState, useRef } from 'react'
+import { Navbar, Overlay, Popover } from 'react-bootstrap'
 
-const User = require('../assets/images/user.jpg').default;
-const NotificationIcon = require('../assets/images/notification.svg').default;
-const CytelLogo = require('../assets/images/Cytel-Logo.png').default;
+const User = require('../assets/images/user.jpg').default
+const NotificationIcon = require('../assets/images/notification.svg').default
+const CytelLogo = require('../assets/images/Cytel-Logo.png').default
 
 function Header() {
-    const [show, setShow] = useState(false);
-    const [target, setTarget] = useState(null);
-    const userIcon = useRef(null);
+    const [show, setShow] = useState(false)
+    const [target, setTarget] = useState(null)
+    const userIcon = useRef(null)
 
     const handleClick = event => {
-        setShow(!show);
-        setTarget(event.target);
+        setShow(!show)
+        setTarget(event.target)
     }
 
     return (

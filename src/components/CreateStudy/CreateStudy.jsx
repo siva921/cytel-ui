@@ -1,9 +1,8 @@
 import React from 'react'
-import {
-    Button, Modal, Form, Row, Col
-} from 'react-bootstrap';
+import PropTypes from 'prop-types'
+import { Button, Modal, Form, Row, Col } from 'react-bootstrap'
 
-export default function CreateStudy(props) {
+function CreateStudy(props) {
     return (
         <Modal size="lg" show={props.show} onHide={props.handleClose}>
             <Modal.Header closeButton>
@@ -21,7 +20,10 @@ export default function CreateStudy(props) {
                         </Col>
                     </Form.Group>
 
-                    <Form.Group as={Row} controlId="formEstimatedCompletionDate">
+                    <Form.Group
+                        as={Row}
+                        controlId="formEstimatedCompletionDate"
+                    >
                         <Form.Label column sm="2">
                             Study Start Date
                         </Form.Label>
@@ -85,7 +87,20 @@ export default function CreateStudy(props) {
                     Save
                 </Button>
             </Modal.Footer>
-
         </Modal>
     )
 }
+
+CreateStudy.defaultProps = {
+    show: false,
+    handleClose: () => {},
+    handleSubmit: () => {},
+}
+
+CreateStudy.prototype = {
+    show: PropTypes.bool,
+    handleClose: PropTypes.func,
+    handleSubmit: PropTypes.func,
+}
+
+export default CreateStudy

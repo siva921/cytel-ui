@@ -1,6 +1,6 @@
 # cytel-ui
 
-Empty project.
+cytel-ui
 
 ## Building and running on localhost
 

@@ -24,5 +24,12 @@
         "react"
     ],
     "rules": {
-    }
+        "react/prop-types": 0
+    },
+    "overrides": [
+        {
+          "files": ["src/**/*.js"],
+            "excludedFiles": [".bablerc"]
+        }
+    ]
 }
