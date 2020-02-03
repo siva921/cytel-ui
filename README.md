@@ -28,6 +28,12 @@ To create a development build:
 npm run build-dev
 ```
 
+To check linting issue:
+
+```sh
+npm run lint
+```
+
 ## Running
 
 Open the file `dist/index.html` in your browser

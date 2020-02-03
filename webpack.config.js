@@ -4,10 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const config = {
     entry: ['react-hot-loader/patch', './src/index.js'],
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: '[name].[contenthash].js',
-    },
     module: {
         rules: [
             {
@@ -21,7 +17,12 @@ const config = {
             },
             {
                 test: /\.scss$/,
-                use: ['style-loader', 'css-loader', 'sass-loader'],
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader',
+                    'postcss-loader',
+                ],
             },
             {
                 test: /\.svg$/,
@@ -30,6 +31,10 @@ const config = {
             {
                 test: /\.(jpe?g|png|gif)$/i,
                 use: ['url-loader?limit=10000', 'img-loader'],
+            },
+            {
+                test: /\.(woff|woff2)$/,
+                loader: 'url-loader',
             },
         ],
     },
@@ -67,9 +72,23 @@ const config = {
 }
 
 module.exports = (env, argv) => {
+    if (!argv.hot && argv.mode === 'developement') {
+        config.output = {
+            path: path.resolve(__dirname, 'dist'),
+            filename: '[name].[contenthash].js',
+        }
+    }
+    if (argv.mode === 'production') {
+        config.output = {
+            path: path.resolve(__dirname, 'build'),
+            filename: '[name].[contenthash].js',
+        }
+    }
     if (argv.hot) {
-        // Cannot use 'contenthash' when hot reloading is enabled.
-        config.output.filename = '[name].[hash].js'
+        config.output = {
+            path: path.resolve(__dirname, 'dist'),
+            filename: '[name].[hash].js',
+        }
     }
 
     return config
