@@ -2,6 +2,7 @@
 const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const config = {
     entry: ['react-hot-loader/patch', './src/index.js'],
@@ -45,19 +46,35 @@ const config = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: require('html-webpack-template'),
-            inject: false,
+            template: './build-index.html',
+            inject: true,
             appMountId: 'app',
+        }),
+        new MiniCssExtractPlugin({
+            filename: '[name].css',
         }),
     ],
     optimization: {
         runtimeChunk: 'single',
         splitChunks: {
+            chunks: 'async',
+            minSize: 30000,
+            maxSize: 0,
+            minChunks: 1,
+            maxAsyncRequests: 6,
+            maxInitialRequests: 4,
+            automaticNameDelimiter: '~',
+            automaticNameMaxLength: 30,
             cacheGroups: {
-                vendor: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'vendors',
+                raectLib: {
+                    test: /[\\/]node_modules[\\/](react|react-dom|redux|redux-saga|react-redux|redux-logger|react-dom|react-bootstrap|react-hot-loader|prop-types|react-datepicker)[\\/]/,
+                    name: 'raectLib',
                     chunks: 'all',
+                },
+                default: {
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true,
                 },
             },
         },
