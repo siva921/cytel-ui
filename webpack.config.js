@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -17,12 +18,7 @@ const config = {
             },
             {
                 test: /\.scss$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'sass-loader',
-                    'postcss-loader',
-                ],
+                use: ['style-loader', 'css-loader', 'sass-loader'],
             },
             {
                 test: /\.svg$/,
@@ -73,6 +69,7 @@ const config = {
 
 module.exports = (env, argv) => {
     if (!argv.hot && argv.mode === 'developement') {
+        config.devtool = '#inline-source-map'
         config.output = {
             path: path.resolve(__dirname, 'dist'),
             filename: '[name].[contenthash].js',

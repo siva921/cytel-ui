@@ -6,7 +6,7 @@ const NotificationIcon = require('../assets/images/notification.svg').default
 const CytelLogo = require('../assets/images/Cytel-Logo.png').default
 
 function Header() {
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(false);
     const [target, setTarget] = useState(null)
     const userIcon = useRef(null)
 

@@ -1,4 +1,5 @@
-{
+module.exports = {
+    "parser": "babel-eslint",
     "env": {
         "commonjs": true,
         "browser": true,
@@ -6,8 +7,8 @@
     },
     "extends": [
         "eslint:recommended",
+        "plugin:react/recommended",
         "plugin:prettier/recommended",
-        "plugin:react/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -26,10 +27,21 @@
     "rules": {
         "react/prop-types": 0
     },
-    "overrides": [
-        {
-          "files": ["src/**/*.js"],
-            "excludedFiles": [".bablerc"]
-        }
-    ]
-}
+    settings: {
+        react: {
+            version: "detect",
+        },
+    },
+    "globals": {
+		"new": true,
+		"localStorage": true,
+		"process": true,
+		"__dirname":true,
+		"describe":true,
+		"require":true,
+		"module":true,
+		"it":true,
+		"Promise":true,
+		"console":true,
+    }
+};

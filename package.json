@@ -11,11 +11,12 @@
     "build-dev": "webpack -d --mode development",
     "build-prod": "webpack -p --mode production",
     "start": "webpack-dev-server --hot --mode development",
-    "lint": "eslint src/**/**/*.js{,x}"
+    "lint": "eslint -o ./test/test.xml src/**/**/*.js{,x}"
   },
   "dependencies": {
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "jquery": "^3.4.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
@@ -32,6 +33,7 @@
     "@babel/preset-env": "^7.8.3",
     "@babel/preset-react": "^7.8.3",
     "@hot-loader/react-dom": "^16.11.0+4.12.16",
+    "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "core-js": "^3.6.4",
     "css-loader": "^3.4.2",
@@ -42,9 +44,9 @@
     "file-loader": "^5.0.2",
     "html-webpack-plugin": "^3.2.0",
     "html-webpack-template": "^6.2.0",
+    "imagemin": "^5.0.0",
     "img-loader": "^3.0.0",
     "node-sass": "^4.13.1",
-    "postcss-loader": "^3.0.0",
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.1.3",
