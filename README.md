@@ -50,18 +50,18 @@ The minimal React, Webpack, Babel Setup. You want to get beyond create-react-app
 * Babel 7
 * Hot Module Replacement
 
-`babel-core` Provides basic core babel configuration
-`babel-preset-env` In order to work with latest ES6/ES7/ES8 features
-`babel-preset-react` It allows to work with react syntax which is JSX
-`babel-loader` Consider this as a bridge of communication between Webpack and Babel
-`regenerator-runtime` in order to get async/await and ES6 ES7 working
-`core-js` pollyfills for IE11 to get Promise working
-`react` the main engine of the React.js
-`react-dom` obviously, we are going to create app for browser
-`webpack` The main webpack plugin as an engine for its dependents.
-`webpack-cli` To access some webpack commands through CLI like starting dev server, creating developement and production build, etc.
-`webpack-dev-server` A minimal server for client-side development purpose only.
-`html-webpack-plugin` Will help in creating HTML templates for our application.
+`babel-core` Provides basic core babel configuration.<br>
+`babel-preset-env` In order to work with latest ES6/ES7/ES8 features.<br>
+`babel-preset-react` It allows to work with react syntax which is JSX.<br>
+`babel-loader` Consider this as a bridge of communication between Webpack and Babel.<br>
+`regenerator-runtime` in order to get async/await and ES6 ES7 working.<br>
+`core-js` pollyfills for IE11 to get Promise working.<br>
+`react` the main engine of the React.js.<br>
+`react-dom` obviously, we are going to create app for browser.<br>
+`webpack` The main webpack plugin as an engine for its dependents.<br>
+`webpack-cli` To access some webpack commands through CLI like starting dev server, creating developement and production build, etc.<br>
+`webpack-dev-server` A minimal server for client-side development purpose only.<br>
+`html-webpack-plugin` Will help in creating HTML templates for our application.<br>
 
 >Trust me you don’t need to memorize all those plugins, just go through it once and understand what they does.
 
@@ -128,7 +128,6 @@ Considering you are in root directory, create a file `webpack.config.js`
 Let's start with adding content to `roortFolder/src/index.html` file.
 
  ```sh
-### Let's start with adding content to `roortFolder/src/index.html` file.
 <!DOCTYPE html>
 <html lang="en">
   <head>
