@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Button, Modal, Form, Row, Col } from 'react-bootstrap'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 function CreateStudy(props) {
     return (
@@ -34,7 +36,11 @@ function CreateStudy(props) {
                             Est Completion Date
                         </Form.Label>
                         <Col sm="4">
-                            <Form.Control type="date" />
+                            <DatePicker
+                                selected={new Date()}
+                                onChange={() => {}}
+                            />
+                            {/* <Form.Control type="date" /> */}
                         </Col>
                     </Form.Group>
 
