@@ -38,7 +38,7 @@ npm run lint
 
 Open the file `dist/index.html` in your browser
 
-### Still figureing out how to setup!!
+### Still figuring out how to setup!!
 
 ![Test Image 4](./src/assets/images/es6-webpack-react-babel.png)
 
@@ -88,6 +88,7 @@ rootFolder
 ├── node_modules
 ├── package.json
 ├── .gitignore
+├── .babelrc
 ├── dist
 └── src
     ├── index.html
