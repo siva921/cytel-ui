@@ -6,7 +6,7 @@ const NotificationIcon = require('../assets/images/notification.svg').default
 const CytelLogo = require('../assets/images/Cytel-Logo.png').default
 
 function Header() {
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(false)
     const [target, setTarget] = useState(null)
     const userIcon = useRef(null)
 
@@ -45,7 +45,7 @@ function Header() {
                             <Popover.Title as="h3">User Name</Popover.Title>
                             <Popover.Content>
                                 <strong>Holy guacamole!</strong>
-                                Check this info.
+                                Check this info.........
                             </Popover.Content>
                         </Popover>
                     </Overlay>
