@@ -42,6 +42,7 @@ const config = {
         },
     },
     devServer: {
+        disableHostCheck: true,
         contentBase: './dist',
     },
     plugins: [

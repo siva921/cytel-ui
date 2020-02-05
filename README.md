@@ -1,6 +1,6 @@
-# cytel-ui
+# react-redux-webpack-saga
 
-cytel-ui
+react-redux-webpack-saga
 
 ## Building and running on localhost
 
@@ -34,7 +34,7 @@ To check linting issue:
 npm run lint
 ```
 
-## Running
+### Running
 
 Open the file `dist/index.html` in your browser
 
@@ -44,11 +44,20 @@ Open the file `dist/index.html` in your browser
 
 The minimal React, Webpack, Babel Setup. You want to get beyond create-react-app?
 
-## Features
-* React 16
+### What’s Included?
+
+Environment will have everything you need to build a modern single-page React application.<br>
+
+* React 16, JSX, and ES6 syntax support
+* Language extras beyond ES6 like the object spread operator
+* A live development server that warns about common mistakes
+* A build script to bundle JS, CSS, and images for production, with hashes and sourcemaps
 * Webpack 4
 * Babel 7
-* Hot Module Replacement
+* Image css and js/jsx loader
+* inline-source-map for development server 
+* Hot Module Replacement - Changes to React components in src will hot-reload
+* performance and chunk splitting 
 
 `babel-core` Provides basic core babel configuration.<br>
 `babel-preset-env` In order to work with latest ES6/ES7/ES8 features.<br>
@@ -56,6 +65,7 @@ The minimal React, Webpack, Babel Setup. You want to get beyond create-react-app
 `babel-loader` Consider this as a bridge of communication between Webpack and Babel.<br>
 `regenerator-runtime` in order to get async/await and ES6 ES7 working.<br>
 `core-js` pollyfills for IE11 to get Promise working.<br>
+`isomorphic-fetch` IE 11 issue - 'fetch' is undefined. <br>
 `react` the main engine of the React.js.<br>
 `react-dom` obviously, we are going to create app for browser.<br>
 `webpack` The main webpack plugin as an engine for its dependents.<br>
@@ -65,16 +75,19 @@ The minimal React, Webpack, Babel Setup. You want to get beyond create-react-app
 
 >Trust me you don’t need to memorize all those plugins, just go through it once and understand what they does.
 
-#### Install Babel packages as dev dependency
+### `Quick setup`
+`npm init`
+
+### Install Babel packages as dev dependency
 `npm i --save-dev babel-core babel-loader babel-preset-env babel-preset-react`
 
-#### Install Webpack packages as dev dependencies
+### Install Webpack packages as dev dependency
 `npm i -D webpack webpack-cli webpack-dev-server html-webpack-plugin`
 
-#### Install main packages
+### Install react as a main dependency
 `npm i --save react react-dom`
 
-#### `Configuring Babel`
+### `Configuring Babel`
 Create a file `.babelrc` in main folder. This is the configuration file babel looks up for and those presets should be mentioned here for Babel to know.
 
 ```sh
@@ -95,7 +108,7 @@ rootFolder
     ├── index.js
     └── webpack.config.js
 ```
-#### Lets configuring Webpack
+### Lets configuring Webpack
 Considering you are in root directory, create a file `webpack.config.js` 
 
  ```sh
