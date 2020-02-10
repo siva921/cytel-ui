@@ -79,7 +79,7 @@ Environment will have everything you need to build a modern single-page React ap
 `npm init`
 
 ### Install Babel packages as dev dependency
-`npm i --save-dev babel-core babel-loader babel-preset-env babel-preset-react`
+`npm i --save-dev @babel/core@7.8.3 babel-loader@8.0.6 @babel/preset-env@7.8.3 @babel/preset-react@7.8.3`
 
 ### Install Webpack packages as dev dependency
 `npm i -D webpack webpack-cli webpack-dev-server html-webpack-plugin`
@@ -91,7 +91,17 @@ Environment will have everything you need to build a modern single-page React ap
 Create a file `.babelrc` in main folder. This is the configuration file babel looks up for and those presets should be mentioned here for Babel to know.
 
 ```sh
-{"presets":["env", "react"]}
+{
+    presets: [
+      [
+        '@babel/preset-env',
+        {
+          modules: false
+        }
+      ],
+      '@babel/preset-react'
+    ]
+}
 ```
 
 ### `Folder structure`
@@ -112,26 +122,35 @@ rootFolder
 Considering you are in root directory, create a file `webpack.config.js` 
 
  ```sh
- const path = require(‘path’);
- const HtmlWebpackPlugin = require(‘html-webpack-plugin’);
- module.exports = {
-    entry: path.join(__dirname, ‘/src/index.js’),
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+module.exports = {
+    entry: path.join(__dirname, '/src/index.js'),
     output: {
-        filename: ‘build.js’,
-        path: path.join(__dirname, ‘/dist’)},
+       filename: 'build.js',
+       path: path.join(__dirname, '/dist')
+    },
     module:{
         rules:[{
-           test: /\.js$/,
-           exclude: /node_modules/,
-           loader: ‘babel-loader’
+            test: /\.js$/,
+            exclude: /node_modules/,
+            loader: 'babel-loader'
         }]
     },
+    devServer: {
+        disableHostCheck: true,
+        contentBase: './dist',
+    },
     plugins:[
-        new HtmlWebpackPlugin(
-           {template: path.join(__dirname,‘/src/index.html’)}
-        )
-    ]
- }
+       new HtmlWebpackPlugin(
+            {
+                template: path.join(__dirname, '/src/index.html'),
+                inject: true,
+                appMountId: 'app',
+            }
+       )
+   ]
+}
 ```
 - In this case index.js resides inside `rootFolder/src` directory, so create src directory inside app and create a new file `index.js`.
 - We have defined — in production what should be the name of the main file `build.js` and where will it be placed `rootFolder/dist` automatically.
@@ -144,16 +163,17 @@ Let's start with adding content to `roortFolder/src/index.html` file.
  ```sh
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta content="ie=11" http-equiv="x-ua-compatible">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>react-redux-webpack-saga</title>
-  </head>
-  <body>
-    <div id="app">
-    </div>
-  </body>
+ <head>
+   <meta charset="utf-8">
+   <meta content="ie=11" http-equiv="x-ua-compatible">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>react-redux-webpack-saga</title>
+ </head>
+ <body>
+   <div id="app">
+   </div>
+   <script src="./bundle.js"></script>
+ </body>
 </html>
 ```
 Important thing to notice `<div id=”root”></div>` No matter how big your app is going to be, will render inside div.
@@ -161,14 +181,14 @@ Important thing to notice `<div id=”root”></div>` No matter how big your app
 Lets add the React part of the app in the rootFolder/src/index.js.
 
  ```sh
- import React from ‘react’;
- import ReactDOM from ‘react-dom’;
- const App = () => (
-   <div>
-      <h1>Hello world!!</h1>
-   </div>
- )
- ReactDOM.render(<App/>, document.getElementById(‘root’));
+import React from 'react';
+import ReactDOM from 'react-dom';
+const App = () => (
+  <div>
+     <h1>Hello world!!</h1>
+  </div>
+)
+ReactDOM.render(<App/>, document.getElementById('app'));
  ```
 We are good to go! Now all we have to do is fire up the `webpack-dev-server` to see our “Hello world” For that lets open package.json and add below line in script. --hot will keep watching your changes and --open trigger browser.
 
