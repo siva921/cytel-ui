@@ -7,9 +7,9 @@ import App from './app'
 import './styles.css'
 import './styles.scss'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt, faUser, faBell } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faTrashAlt)
+library.add(faTrashAlt, faUser, faBell)
 
 var mountNode = document.getElementById('app')
 ReactDOM.render(<App name="Jane" />, mountNode)

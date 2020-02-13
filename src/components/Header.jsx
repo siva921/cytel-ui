@@ -1,8 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { Navbar, Overlay, Popover } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const User = require('../assets/images/user.jpg').default
-const NotificationIcon = require('../assets/images/notification.svg').default
 const CytelLogo = require('../assets/images/Cytel-Logo.png').default
 
 function Header() {
@@ -21,18 +20,12 @@ function Header() {
                 <img className="logo" src={CytelLogo} alt="Logo" />
             </Navbar.Brand>
             <Navbar.Collapse className="justify-content-end">
-                <img
-                    className="notification-icon"
-                    src={NotificationIcon}
-                    alt="user"
-                />
-
+                <FontAwesomeIcon className="user-icon fa-lg" icon="bell" />
                 <div ref={userIcon}>
-                    <img
-                        className="user-icon"
-                        src={User}
-                        alt="user"
+                    <FontAwesomeIcon
+                        className="user-icon fa-lg"
                         onClick={handleClick}
+                        icon="user"
                     />
                     <Overlay
                         show={show}
