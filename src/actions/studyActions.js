@@ -1,13 +1,31 @@
 import getAPI from '../lib/Helper'
+import axios from 'axios'
+import { header } from '../lib/Helper'
 
 export const getStudies = async () => {
     const url = getAPI('getStudies')
-    const result = await fetch(url, {
+    const result = await axios({
+        url,
         method: 'GET',
     })
-    if (result.ok) {
-        console.log(result)
-        return result.json()
+    console.log(result)
+    if (result.statusText && result.status === 200) {
+        return result.data
+    } else {
+        throw new Error('Something went wrong')
+    }
+}
+
+export const createStudy = async study => {
+    const url = getAPI('createStudies')
+    const result = await axios({
+        url,
+        method: 'POST',
+        data: study,
+        header,
+    })
+    if (result.statusText) {
+        return result.data
     } else {
         throw new Error('Something went wrong')
     }

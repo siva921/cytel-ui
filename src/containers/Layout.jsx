@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { ListGroup } from 'react-bootstrap'
-import StudyTable from '../components/CreateStudy/Study/StudyTable'
+import StudyTable from '../components/Study/StudyTable'
 import Header from '../components/Header'
-import CreateStudy from '../components/CreateStudy/CreateStudy'
+import CreateStudy from '../components/Study/CreateStudy'
 
 const Layout = () => {
     const dispatch = useDispatch()
     const [show, setShow] = useState(false)
-    const handleSubmit = () => setShow(false)
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
+    const handleSubmit = study => {
+        dispatch({
+            type: 'CREATE_STUDIES',
+            study,
+        })
+        setShow(false)
+    }
 
     useEffect(() => {
         dispatch({

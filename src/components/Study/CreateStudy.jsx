@@ -1,10 +1,45 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
+import moment from 'moment'
 import PropTypes from 'prop-types'
 import { Button, Modal, Form, Row, Col } from 'react-bootstrap'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
 function CreateStudy(props) {
+    const [studyStartDate, setStudyStartDate] = useState()
+    const [studyCompletionDate, setStudyCompletionDate] = useState()
+    const studyName = useRef(null)
+    const protocolID = useRef(null)
+    const studyGroup = useRef(null)
+    const studyPhase = useRef(null)
+    const primaryIndication = useRef(null)
+    const secondaryIndication = useRef(null)
+
+    const handleSubmit = () => {
+        const study_name = studyName.current.value
+        const protocol_id = protocolID.current.value
+        const study_start_date = moment(studyStartDate).format('DD/MM/YYYY')
+        const study_completion_date = moment(studyCompletionDate).format(
+            'DD/MM/YYYY'
+        )
+        const study_group = studyGroup.current.value
+        const phase = studyPhase.current.value
+        const primary_indication = primaryIndication.current.value
+        const secondary_indication = secondaryIndication.current.value
+
+        if (study_name && study_start_date) {
+            props.handleSubmit({
+                study_name,
+                study_start_date,
+                study_completion_date,
+                protocol_id,
+                study_group,
+                phase,
+                primary_indication,
+                secondary_indication,
+            })
+        }
+    }
     return (
         <Modal size="lg" show={props.show} onHide={props.handleClose}>
             <Modal.Header closeButton>
@@ -15,10 +50,10 @@ function CreateStudy(props) {
                 <Form>
                     <Form.Group as={Row} controlId="formStudyName">
                         <Form.Label column sm="2">
-                            Study Name
+                            Study Name*
                         </Form.Label>
                         <Col sm="4">
-                            <Form.Control type="text" />
+                            <Form.Control type="text" ref={studyName} />
                         </Col>
                     </Form.Group>
 
@@ -27,20 +62,28 @@ function CreateStudy(props) {
                         controlId="formEstimatedCompletionDate"
                     >
                         <Form.Label column sm="2">
-                            Study Start Date
+                            Study Start Date*
                         </Form.Label>
                         <Col sm="4">
-                            <Form.Control type="date" />
+                            <DatePicker
+                                selected={studyStartDate}
+                                dateFormat="dd/MM/yyyy"
+                                onChange={date => {
+                                    setStudyStartDate(date)
+                                }}
+                            />
                         </Col>
                         <Form.Label column sm="2">
                             Est Completion Date
                         </Form.Label>
                         <Col sm="4">
                             <DatePicker
-                                selected={new Date()}
-                                onChange={() => {}}
+                                selected={studyCompletionDate}
+                                dateFormat="dd/MM/yyyy"
+                                onChange={date => {
+                                    setStudyCompletionDate(date)
+                                }}
                             />
-                            {/* <Form.Control type="date" /> */}
                         </Col>
                     </Form.Group>
 
@@ -49,13 +92,13 @@ function CreateStudy(props) {
                             Protocol ID
                         </Form.Label>
                         <Col sm="4">
-                            <Form.Control type="text" />
+                            <Form.Control type="text" ref={protocolID} />
                         </Col>
                         <Form.Label column sm="2">
                             Study Group
                         </Form.Label>
                         <Col sm="4">
-                            <Form.Control type="text" />
+                            <Form.Control type="text" ref={studyGroup} />
                         </Col>
                     </Form.Group>
 
@@ -64,13 +107,13 @@ function CreateStudy(props) {
                             Phase
                         </Form.Label>
                         <Col sm="4">
-                            <Form.Control type="text" />
+                            <Form.Control type="text" ref={studyPhase} />
                         </Col>
                         <Form.Label column sm="2">
                             Primary Indication
                         </Form.Label>
                         <Col sm="4">
-                            <Form.Control type="text" />
+                            <Form.Control type="text" ref={primaryIndication} />
                         </Col>
                     </Form.Group>
 
@@ -79,7 +122,10 @@ function CreateStudy(props) {
                             Secondary Indication
                         </Form.Label>
                         <Col sm="4">
-                            <Form.Control type="text" />
+                            <Form.Control
+                                type="text"
+                                ref={secondaryIndication}
+                            />
                         </Col>
                     </Form.Group>
                 </Form>
@@ -89,7 +135,7 @@ function CreateStudy(props) {
                 <Button variant="outline-secondary" onClick={props.handleClose}>
                     Cancel
                 </Button>
-                <Button variant="outline-primary" onClick={props.handleSubmit}>
+                <Button variant="outline-primary" onClick={handleSubmit}>
                     Save
                 </Button>
             </Modal.Footer>

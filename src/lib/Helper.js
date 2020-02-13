@@ -1,15 +1,8 @@
 const ENV = getENV()
 
 const END_POINTs = {
-    development: {
-        getStudies: `/studies`,
-    },
-    test: {
-        getStudies: `/studies`,
-    },
-    production: {
-        getStudies: `/studies`,
-    },
+    getStudies: `/studies`,
+    createStudies: `/studies`,
 }
 
 const URLs = {
@@ -31,6 +24,10 @@ function getENV() {
 
 export default function getAPI(uri) {
     let url = ''
-    url = `${URLs[ENV]}${END_POINTs[ENV][uri]}`
+    url = `${URLs[ENV]}${END_POINTs[uri]}`
     return url
+}
+
+export function header() {
+    return { 'Content-Type': 'application/json' }
 }

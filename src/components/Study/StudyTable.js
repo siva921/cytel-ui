@@ -8,9 +8,11 @@ import {
     Button,
     Table,
 } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function StudyTable(props) {
     const studies = useSelector(state => state.studyReducer.studies)
+
     return (
         <React.Fragment>
             <Navbar className="bg-light justify-content-between searchBar">
@@ -48,11 +50,12 @@ export default function StudyTable(props) {
                         <th>Phase</th>
                         <th>Primary Indication</th>
                         <th>Secondary Indication</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {studies.map((rowData, index) => (
-                        <tr key={index}>
+                    {studies.map(rowData => (
+                        <tr key={rowData.id}>
                             <td>{rowData.study_name}</td>
                             <td>{rowData.study_start_date}</td>
                             <td>{rowData.study_completion_date}</td>
@@ -61,6 +64,13 @@ export default function StudyTable(props) {
                             <td>{rowData.phase}</td>
                             <td>{rowData.primary_indication}</td>
                             <td>{rowData.secondary_indication}</td>
+                            <td>
+                                <FontAwesomeIcon
+                                    icon="trash-alt"
+                                    transform="shrink-2"
+                                    color="red"
+                                />
+                            </td>
                         </tr>
                     ))}
                 </tbody>
