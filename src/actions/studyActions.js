@@ -30,3 +30,19 @@ export const createStudy = async study => {
         throw new Error('Something went wrong')
     }
 }
+
+export const deleteStudy = async id => {
+    let url = getAPI('deleteStudies')
+    url = `${url}/${id}`
+    console.log(url)
+    const result = await axios({
+        url,
+        method: 'DELETE',
+        header,
+    })
+    if (result.statusText) {
+        return result.data
+    } else {
+        throw new Error('Something went wrong')
+    }
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import {
     Navbar,
     Form,
@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function StudyTable(props) {
     const studies = useSelector(state => state.studyReducer.studies)
-
+    const dispatch = useDispatch()
     return (
         <React.Fragment>
             <Navbar className="bg-light justify-content-between searchBar">
@@ -66,6 +66,12 @@ export default function StudyTable(props) {
                             <td>{rowData.secondary_indication}</td>
                             <td>
                                 <FontAwesomeIcon
+                                    onClick={() => {
+                                        dispatch({
+                                            type: 'DELETE_STUDY',
+                                            id: rowData.id,
+                                        })
+                                    }}
                                     icon="trash-alt"
                                     transform="shrink-2"
                                     color="red"

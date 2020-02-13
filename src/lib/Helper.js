@@ -3,6 +3,7 @@ const ENV = getENV()
 const END_POINTs = {
     getStudies: `/studies`,
     createStudies: `/studies`,
+    deleteStudies: `/studies`,
 }
 
 const URLs = {

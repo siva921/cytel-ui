@@ -1,5 +1,5 @@
 import { call, put } from 'redux-saga/effects'
-import { getStudies, createStudy } from '../actions/studyActions'
+import { getStudies, createStudy, deleteStudy } from '../actions/studyActions'
 
 export function* getStudySaga() {
     const studies = yield call(getStudies)
@@ -8,4 +8,10 @@ export function* getStudySaga() {
 
 export function* createStudySaga(payload) {
     yield call(createStudy, payload.study)
+    yield call(getStudySaga)
+}
+
+export function* deleteStudySaga(payload) {
+    yield call(deleteStudy, payload.id)
+    yield call(getStudySaga)
 }
