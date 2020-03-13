@@ -8,5 +8,5 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 - script: |
-    npm audit fix --force
+  npm audit fix --force
   displayName: 'npm install astepsnd build'
