@@ -8,10 +8,11 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
-
-steps:
+- task: Npm@1
+  inputs:
+    command: 'install'
 - script: |
     npm audit fix --force
     npm install
     npm run build
-  displayName: 'npm install and build'
+  displayName: 'npm install astepsnd build'
