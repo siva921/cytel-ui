@@ -17,5 +17,5 @@ steps:
 
 - script: |
     npm install
-    'npm audit fix'
+    `npm audit fix`
   displayName: 'npm install and build'
