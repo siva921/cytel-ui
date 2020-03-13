@@ -12,5 +12,4 @@ pool:
 steps:
 - script: |
     npm audit fix --force
-    npm run build
   displayName: 'npm install and build'
